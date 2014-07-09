@@ -96,7 +96,7 @@
     <!-- http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003 -->
 
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003">
-        <rdfs:label xml:lang="en">tweet data item parts</rdfs:label>
+        <rdfs:label xml:lang="en">tweet data item part</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
@@ -113,7 +113,8 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000004">
         <rdfs:label xml:lang="en">data set containing contributors ids</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
-        <obo:IAO_0000115>A data containing a list of identifiers that uniquely identify Twitter user accounts that contributed in some way to a tweet data item.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: An collection of brief user objects (usually only one) indicating users who contributed to the authorship of the tweet, on behalf of the official tweet author.</rdfs:comment>
+        <obo:IAO_0000115>A data set containing a list of identifiers that uniquely identify Twitter user accounts that contributed in some way to a tweet data item.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -143,28 +144,20 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000007">
         <rdfs:label xml:lang="en">created timestamp</rdfs:label>
         <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000001"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/span#SpatiotemporalInstant"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000001"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&obo;IAO_0000416"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                                <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000001"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
         <obo:IAO_0000115>A timestamp which denotes the precise time during which a tweet data item was created.</obo:IAO_0000115>
@@ -235,6 +228,7 @@
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
+        <rdfs:comment>Twitter Guidance: Indicates approximately how many times this Tweet has been &quot;favorited&quot; by Twitter users.</rdfs:comment>
     </owl:Class>
     
 
@@ -270,6 +264,7 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000014">
         <rdfs:label xml:lang="en">filter level</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
+        <rdfs:comment>Twitter Guidance: Indicates the maximum value of the filter_level parameter which may be used and still stream this Tweet. So a value of medium will be streamed on none, low, and medium streams.</rdfs:comment>
     </owl:Class>
     
 
@@ -279,7 +274,9 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000015">
         <rdfs:label xml:lang="en">tweet id</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
         <obo:IAO_0000115>A centrally registered identifier that denotes a tweet data item.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: The integer representation of the unique identifier for this Tweet. This number is greater than 53 bits and some programming languages may have difficulty/silent defects in interpreting it. Using a signed 64 bit integer for storing this identifier is safe. Use id_str for fetching the identifier to stay on the safe side.</rdfs:comment>
     </owl:Class>
     
 
@@ -290,6 +287,7 @@
         <rdfs:label xml:lang="en">user screen name responded to</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
         <obo:IAO_0000115>An identifier that, at some point in time, uniquely identifies a Twitter user account.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: If the represented Tweet is a reply, this field will contain the screen name of the original Tweet&apos;s author.</rdfs:comment>
     </owl:Class>
     
 
@@ -300,6 +298,7 @@
         <rdfs:label xml:lang="en">tweet id responded to</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
         <obo:IAO_0000115>A identifier that denotes a tweet data item that the associated tweet data item was created in response to.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: If the represented Tweet is a reply, this field will contain the integer representation of the original Tweet&apos;s ID.</rdfs:comment>
     </owl:Class>
     
 
@@ -319,6 +318,7 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000019">
         <rdfs:label xml:lang="en">tweet language</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
+        <rdfs:comment>Twitter Guidance: When present, indicates a BCP 47 language identifier corresponding to the machine-detected language of the Tweet text, or &quot;und&quot; if no language could be detected.</rdfs:comment>
         <obo:IAO_0000115>A data item that is about the language that a tweet message is written in.</obo:IAO_0000115>
     </owl:Class>
     
@@ -339,7 +339,8 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000021">
         <rdfs:label xml:lang="en">sensitive content flag</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
-        <obo:IAO_0000115>A boolean value that denotes whether or not the associated tweet message contains content deemed sensitive by some metric.</obo:IAO_0000115>
+        <obo:IAO_0000115>A boolean value that denotes whether or not the associated tweet message contains a URL which links content deemed sensitive by some metric.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: This field only surfaces when a tweet contains a link. The meaning of the field doesn&apos;t pertain to the tweet content itself, but instead it is an indicator that the URL contained in the tweet may contain content or media identified as sensitive content.</rdfs:comment>
     </owl:Class>
     
 
@@ -366,6 +367,7 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
         <rdfs:comment>TODO: I need to grab an actual count measurement class.  I believe apollo has one.</rdfs:comment>
+        <rdfs:comment>Twitter Guidance: Number of times this Tweet has been retweeted. This field is no longer capped at 99 and will not turn into a String for &quot;100+&quot;.</rdfs:comment>
         <obo:IAO_0000115>A count of the number of times the associated tweet message has been retweeted.</obo:IAO_0000115>
     </owl:Class>
     
@@ -386,7 +388,8 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000024">
         <rdfs:label xml:lang="en">retweeted tweet</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
-        <obo:IAO_0000115>The identifier of a tweet that is participating in the retweeting process.</obo:IAO_0000115>
+        <obo:IAO_0000115>A tweet data item that is participating in the retweeting process by being retweeted.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: Users can amplify the broadcast of tweets authored by other users by retweeting. Retweets can be distinguished from typical Tweets by the existence of a retweeted_status attribute. This attribute contains a representation of the original Tweet that was retweeted. Note that retweets of retweets do not show representations of the intermediary retweet, but only the original tweet. (Users can also unretweet a retweet they created by deleting their retweet.)</rdfs:comment>
     </owl:Class>
     
 
@@ -420,6 +423,7 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
+        <rdfs:comment>Twitter Guidance: Utility used to post the Tweet, as an HTML-formatted string. Tweets from the Twitter website have a source value of web.</rdfs:comment>
         <obo:IAO_0000115>A possibly non-unique identifier that denotes the software application used to generate a tweet data item.</obo:IAO_0000115>
     </owl:Class>
     
@@ -438,8 +442,20 @@
 
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000027">
         <rdfs:label xml:lang="en">tweet user</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000039"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
+                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000001"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
-        <obo:IAO_0000115>An centrally registered identifier that uniquely denotes a Twitter user account.</obo:IAO_0000115>
+        <rdfs:comment>Twitter Guidance: The user who posted this Tweet. Perspectival attributes embedded within this object are unreliable.</rdfs:comment>
+        <obo:IAO_0000115>A data item about the user account which generated the associated tweet data item.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -449,35 +465,14 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000028">
         <rdfs:label xml:lang="en">copyrighted flag</rdfs:label>
         <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000001"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000032"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty>
-                                            <rdf:Description>
-                                                <owl:inverseOf rdf:resource="http://purl.org/obo/owl/OBO_REL#bearer_of"/>
-                                            </rdf:Description>
-                                        </owl:onProperty>
-                                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000001"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000032"/>
+            </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
         <obo:IAO_0000115>A boolean value that documents whether or not the tweet message is copyrighted.</obo:IAO_0000115>
+        <rdfs:comment>TODO: Find the relationship that would hold between a copyright and a copyrighted entity (e.g., a creative work like a novel or software).</rdfs:comment>
     </owl:Class>
     
 
@@ -528,6 +523,68 @@
     <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000035">
         <rdfs:label xml:lang="en">tweet generation process</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    </owl:Class>
+    
+
+
+    <!-- http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000036 -->
+
+    <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000036">
+        <rdfs:label xml:lang="en">coordinates</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000005"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000006"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000003"/>
+        <obo:IAO_0000115>Represents the geographic location of this Tweet as reported by the user or client application.  Has two primary parts: a lattitude and a longitude</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000039 -->
+
+    <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000039">
+        <rdfs:label xml:lang="en">twitter user data item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
+    </owl:Class>
+    
+
+
+    <!-- http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000040 -->
+
+    <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000040">
+        <rdfs:label xml:lang="en">twitter user data item part</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
+    </owl:Class>
+    
+
+
+    <!-- http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000041 -->
+
+    <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000041">
+        <rdfs:label xml:lang="en">twitter user screen name</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
+    </owl:Class>
+    
+
+
+    <!-- http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000042 -->
+
+    <owl:Class rdf:about="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000042">
+        <rdfs:label xml:lang="en">twitter user id</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://josh.hanna.io/ontologies/twitter.owl/TWITTER_00000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
     </owl:Class>
 </rdf:RDF>
 
